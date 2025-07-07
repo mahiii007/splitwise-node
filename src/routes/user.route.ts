@@ -1,10 +1,9 @@
 import { Router, Request, Response } from "express";
+import { userController } from "../controllers/user.controller";
 const router = Router();
 
-// Health check endpoint
-router.get("/", (_req: Request, res: Response) => {
-  //   throw new Error("dasnsaknd");
-  res.status(200).json({ msg: "user fetched successfully" });
-});
+router.get("/:id", userController.getUserProfile);
+
+router.put("/:id", userController.updateUserProfile);
 
 export { router as userRouter };

@@ -16,7 +16,7 @@ export const authUser = (req: any, res: Response, next: NextFunction) => {
   const token = authHeader.split(" ")[1];
 
   try {
-    const decoded = verify(token, process.env.JWT_SECRET as string);
+    const decoded = verify(token, process.env.SECRET_KEY as string);
     req.user = decoded; // You may want to type this (see below)
     next();
   } catch (err) {

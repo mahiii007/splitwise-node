@@ -22,7 +22,7 @@ const updateUserDetails = async (userDetails: Partial<IUser>) => {
 };
 
 const getUserProfile = async (userId: string) => {
-  return await userModel.findOne({ _id: userId }, { password: 1 });
+  return await userModel.findOne({ _id: userId }, { password: 0 });
 };
 
 export const userService = {
