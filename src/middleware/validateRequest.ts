@@ -9,10 +9,7 @@ export const validateRequest =
   (schemas: ZodSchemaMap) =>
   (req: Request, res: Response, next: NextFunction) => {
     try {
-      console.log(" schemas:", schemas);
-      console.log(" -----------------");
       for (const source of Object.keys(schemas) as RequestSource[]) {
-        console.log(" -----------------");
         const schema = schemas[source];
         if (schema) {
           const result = schema.safeParse(req[source]);
