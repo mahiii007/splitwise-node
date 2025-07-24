@@ -16,7 +16,6 @@ const UserSchema: Schema = new Schema<IUser>(
     },
     isActive: { type: Boolean, default: true },
     friends: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    groups: [{ type: Schema.Types.ObjectId, ref: "Group" }],
   },
   {
     timestamps: true,

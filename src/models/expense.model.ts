@@ -18,7 +18,7 @@ const ExpenseSchema = new Schema<IExpense>(
     description: { type: String, required: true },
     groupId: { type: Schema.Types.ObjectId, ref: "Group", required: true },
     amount: { type: Number, required: true },
-    currency: { type: String, default: "USD" },
+    currency: { type: String, default: "INR" },
     payerId: { type: Schema.Types.ObjectId, ref: "User", required: true },
     status: {
       type: String,

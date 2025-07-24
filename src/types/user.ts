@@ -13,7 +13,6 @@ export interface IUser {
   updatedAt?: Date;
   isActive: boolean;
   friends: Types.ObjectId[];
-  groups: Types.ObjectId[];
 }
 
 export enum UserRole {
