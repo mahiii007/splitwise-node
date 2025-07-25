@@ -6,6 +6,7 @@ import {
   groupIdParamSchema,
   updateGroupSchema,
   getGroupListSchema,
+  addMemberParamSchema,
 } from "../schemas/group.schema";
 const router = Router();
 
@@ -38,7 +39,7 @@ router.delete(
 );
 router.post(
   "/:id/addmembers",
-  validateRequest({ params: groupIdParamSchema }),
+  validateRequest({ body: addMemberParamSchema }),
   groupController.addMemberToGroup
 );
 router.post(

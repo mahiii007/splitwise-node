@@ -41,6 +41,8 @@ export const groupIdParamSchema = z.object({
   id: z.string(),
 });
 
+export const addMemberParamSchema = z.array(z.string());
+
 export const getGroupListSchema = z.object({
   pageNo: z.string().optional().or(z.number().int().min(1)).optional(),
   pageSize: z.string().optional().or(z.number().int().min(1)).optional(),

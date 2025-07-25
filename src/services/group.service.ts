@@ -1,6 +1,7 @@
 import groupModel from "../models/group.model";
 import { GroupMemberRole, IGroup } from "../types/group";
 import mongoose from "mongoose";
+import { userService } from "./user.service";
 
 const createGroup = async (groupDetails: Partial<IGroup>, userId: string) => {
   try {
@@ -100,25 +101,31 @@ const deleteGroup = async (groupId: string) => {
   }
 };
 
-const addMemberToGroup = async (groupId: string, userId: string) => {
+const addMemberToGroup = async (groupId: string, userIds: string[]) => {
   try {
-    const result = await groupModel.findByIdAndUpdate(
-      groupId,
-      {
-        $addToSet: {
-          members: {
-            userId: new mongoose.Types.ObjectId(userId),
-            role: GroupMemberRole.MEMBER,
-            joinedAt: new Date(),
+    let promiseArray = [];
+    for (const userId of userIds) {
+      const user = await userService.getUserProfile(userId);
+      if (!user) {
+        throw new Error(`User not found : ${userId}`);
+      }
+      const result = groupModel.findByIdAndUpdate(
+        groupId,
+        {
+          $addToSet: {
+            members: {
+              userId: new mongoose.Types.ObjectId(userId),
+              role: GroupMemberRole.MEMBER,
+              joinedAt: new Date(),
+            },
           },
         },
-      },
-      { new: true }
-    );
-    if (!result) {
-      throw new Error("Group not found");
+        { new: true }
+      );
+      promiseArray.push(result);
     }
-    return result;
+    const res = await Promise.all(promiseArray);
+    return res;
   } catch (error) {
     throw error;
   }

@@ -101,8 +101,8 @@ const addMemberToGroup = async (req: CustomRequest, res: Response) => {
     logger.info("Adding member to group with ID:", req.params.id);
     logger.debug("Member ID:", req.body.userId);
     const groupId = req.params.id;
-    const memberId = req.body.userId;
-    const result = await groupService.addMemberToGroup(groupId, memberId);
+    const memberIds = req.body;
+    const result = await groupService.addMemberToGroup(groupId, memberIds);
     res.status(200).json({ data: result, msg: "Member added successfully" });
   } catch (error) {
     logger.error("Error adding member to group:", error);

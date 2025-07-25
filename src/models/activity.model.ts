@@ -9,7 +9,12 @@ const ActivitySchema = new Schema<IActivity>(
     description: { type: String, required: true },
     relatedExpenseId: { type: Schema.Types.ObjectId, ref: "Expense" },
     relatedGroupId: { type: Schema.Types.ObjectId, ref: "Group" },
-    relatedUserId: { type: Schema.Types.ObjectId, ref: "User" },
+    relatedUserId: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: false,
+      default: null,
+    },
     amount: { type: Number },
   },
   {

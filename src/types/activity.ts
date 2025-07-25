@@ -6,6 +6,7 @@ export enum ActivityType {
   PAYMENT_MADE = "payment_made",
   GROUP_JOINED = "group_joined",
   SETTLEMENT = "settlement",
+  EXPENSE_EDITED = "expense_edited",
 }
 
 // src/types/activity.ts (continued)
